@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:loader/src/loadingMixin.dart';
+import 'package:loader/src/loadingStatelessWidget.dart';
 
 main() => runApp(LoaderApp());
 
@@ -76,6 +77,28 @@ class _PostsPageState extends State<PostsPage> with LoadingMixin<PostsPage> {
             ),
           )
           .toList(),
+    );
+  }
+}
+
+class FutureText extends StatelessWidget with StatelessLoadingMixin {
+  final Future<String> futureText;
+  final TextStyle style;
+
+  FutureText(this.futureText, {this.style});
+
+  String text;
+
+  @override
+  Future<void> load() async {
+    text = await futureText;
+  }
+
+  @override
+  Widget futureBuild(BuildContext context) {
+    return Text(
+      text,
+      style: style,
     );
   }
 }

@@ -1,8 +1,8 @@
 name: loader
 description: Run asynchronous code before building your widget. Loader will rebuild your widget after the loading is complete.
-version: 0.1.0+1
+version: 0.2.0
 author: Ali Ghanabri <ali.gh2236@gmail.com>
-homepage: https://aligator.ir
+homepage: https://github.com/ali2236/loader
 
 environment:
   sdk: ">=2.1.0 <3.0.0"
@@ -10,9 +10,3 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
-dev_dependencies:
-  flutter_test:
-    sdk: flutter
-
-flutter:

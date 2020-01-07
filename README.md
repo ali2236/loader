@@ -6,7 +6,7 @@ Another way is using flags to rebuild the widget after all the loading is done.
 
 Loader uses the flag method.
 
-## LoadingMixin
+### LoadingMixin
 The `LoadingMixin` adds all the necessary flags to your stateful widget's state to turn it to a 
 FutureBuilder like widget.
 
@@ -42,6 +42,34 @@ class _DataRowState extends State<DataRow> with LoadingMixin<DataRow>{
     if(loading) return Container();
     if(hasError) return Text(error);
     return Text(data);
+  }
+}
+```
+
+### StatelessLoadingMixin
+
+For this mixin to work, you need to delete the `build` method and use the `futureBuild` method instead.
+
+```dart
+class FutureText extends StatelessWidget with StatelessLoadingMixin {
+  final Future<String> futureText;
+  final TextStyle style;
+
+  FutureText(this.futureText, {this.style});
+
+  String text;
+
+  @override
+  Future<void> load() async {
+    text = await futureText;
+  }
+
+  @override
+  Widget futureBuild(BuildContext context) {
+    return Text(
+      text,
+      style: style,
+    );
   }
 }
 ```

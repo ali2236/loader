@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:loader/src/loadingMixin.dart';
 
+typedef LoaderCallback<T> = Future<T> Function();
+
 class Loader<T> extends StatefulWidget {
-  final Future<T> Function() load;
+  final LoaderCallback load;
   final Widget Function(BuildContext context, T value) builder;
   final Widget loadingWidget;
   final Widget Function(String error) errorBuilder;
