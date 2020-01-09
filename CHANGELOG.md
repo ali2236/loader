@@ -1,3 +1,8 @@
+## [0.3.0]
+
+* load() is now called after initState and before didChangeDependencies
+* you can now use inherited widgets in load
+
 ## [0.2.0]
 
 * added StatelessLoadingMixin
