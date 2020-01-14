@@ -1,5 +1,9 @@
 ## [0.3.0]
 
+* fixed a bug with dart's type system throwing an exception when the loader widget had a generic type 
+
+## [0.3.0]
+
 * load() is now called after initState and before didChangeDependencies
 * you can now use inherited widgets in load
 
