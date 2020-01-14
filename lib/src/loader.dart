@@ -18,11 +18,11 @@ class Loader<T> extends StatefulWidget {
       : super(key: key);
 
   @override
-  _LoaderState createState() => _LoaderState();
+  _LoaderState createState() => _LoaderState<T>();
 }
 
-class _LoaderState extends State<Loader> with LoadingMixin<Loader> {
-  dynamic _value;
+class _LoaderState<T> extends State<Loader> with LoadingMixin<Loader> {
+  T _value;
 
   @override
   Future<void> load() async {
