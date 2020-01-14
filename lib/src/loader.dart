@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:loader/src/loadingMixin.dart';
 
 typedef LoaderCallback<T> = Future<T> Function();
+typedef WidgetValueBuilder<T> = Widget Function(BuildContext context, T value);
 
 class Loader<T> extends StatefulWidget {
-  final LoaderCallback load;
-  final Widget Function(BuildContext context, T value) builder;
+  final LoaderCallback<T> load;
+  final WidgetValueBuilder<T> builder;
   final Widget loadingWidget;
   final Widget Function(String error) errorBuilder;
 
@@ -18,15 +19,15 @@ class Loader<T> extends StatefulWidget {
       : super(key: key);
 
   @override
-  _LoaderState createState() => _LoaderState<T>();
+  _LoaderState<T> createState() => _LoaderState<T>();
 }
 
-class _LoaderState<T> extends State<Loader> with LoadingMixin<Loader> {
+class _LoaderState<T> extends State<Loader<T>> with LoadingMixin<Loader<T>> {
   T _value;
 
   @override
   Future<void> load() async {
-    _value = await widget.load();
+    _value = await widget.load() ;
   }
 
   @override
