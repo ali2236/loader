@@ -1,7 +1,5 @@
 # Loader
 
-[![pub package](https://img.shields.io/pub/v/mobx.svg?label=mobx&color=blue)](https://pub.dartlang.org/packages/mobx)
-
 Sometimes you need to load some data before building your widget.
 Because `initState` doesn't support asynchronous loading you need to find another way to load your data.
 The most common way of loading data is using a `FutureBuilder` but FutureBuilders are tedious.
