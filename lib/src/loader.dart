@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:loader/src/loadingMixin.dart';
 
@@ -18,6 +19,10 @@ class Loader<T> extends StatefulWidget {
       this.errorBuilder})
       : super(key: key);
 
+  static LoadingMixin of(BuildContext context) {
+    return context.findAncestorStateOfType<_LoaderState>();
+  }
+
   @override
   _LoaderState<T> createState() => _LoaderState<T>();
 }
@@ -27,7 +32,7 @@ class _LoaderState<T> extends State<Loader<T>> with LoadingMixin<Loader<T>> {
 
   @override
   Future<void> load() async {
-    _value = await widget.load() ;
+    _value = await widget.load();
   }
 
   @override

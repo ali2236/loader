@@ -1,4 +1,8 @@
-## [0.3.0]
+## [0.3.4]
+
+* fixed a bug with calling setState when the widget is not mounted
+
+## [0.3.3]
 
 * fixed a bug with dart's type system throwing an exception when the loader widget had a generic type 
 

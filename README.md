@@ -110,4 +110,4 @@ StatelessLoadingMixin is implemented using the Loader widget.
 
 The Loader widget is implemented using LoadingMixin.
 
-LoadingMixin is implemented using flags on stateful widgets.
+LoadingMixin is implemented using flags on a stateful widget.
