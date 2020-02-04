@@ -11,6 +11,8 @@ Loader uses the flag method.
 The `LoadingMixin` adds all the necessary flags to your stateful widget's state to turn it to a 
 FutureBuilder like widget.
 
+`load` is called before the first `didChangeDependencies`, so you can use `context` to access inherited widgets.
+
 their are two flags:
 
 1. loading : true if the load function is still running
@@ -19,30 +21,38 @@ their are two flags:
 the exception text is stored in the `error` variable.
  
 ```dart
-class DataRow extends StatefulWidget {
-  
-  final int index;
-  
-  DataRow({Key key, this.index}) : super(key: key);
-  
+class HomePage extends StatefulWidget {
+
   @override
-  _DataRowState createState() => _DataRowState();
+  _HomePageState createState() => _HomePageState();
 }
 
-class _DataRowState extends State<DataRow> with LoadingMixin<DataRow>{
-  
-  String data;
-  
+
+class _HomePageState extends State<HomePage> with LoadingMixin<HomePage> {
+
+  Data _data;
+
   @override
-    Future<void> load() async{
-      data = await DataProvider.getData();
-    }
-  
+  Future<void> load() async {
+    var loader = FileLoader();
+    _data = await loader.loadData();
+  }
+
   @override
   Widget build(BuildContext context) {
-    if(loading) return Container();
-    if(hasError) return Text(error);
-    return Text(data);
+    Widget body;
+    if (loading) {
+      body = Container();
+    } else if (hasError) {
+      body = Text(error);
+    } else {
+      body = DataViewer(_data);
+    }
+    
+    return Scaffold(
+      appbar: AppBar(),
+      body: body,
+    );
   }
 }
 ```
