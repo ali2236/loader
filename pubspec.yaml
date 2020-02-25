@@ -1,7 +1,6 @@
 name: loader
 description: Run asynchronous code before building your widget. Loader will rebuild your widget after the loading is complete.
 version: 0.4.0
-author: Ali Ghanabri <ali.gh2236@gmail.com>
 homepage: https://github.com/ali2236/loader
 
 environment:
