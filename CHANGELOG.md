@@ -1,3 +1,7 @@
+## [0.4.0]
+
+* ability to skip calling load in `initState` by setting `skipLoad` to `true`
+
 ## [0.3.4]
 
 * fixed a bug with calling setState when the widget is not mounted

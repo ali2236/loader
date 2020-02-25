@@ -3,15 +3,20 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 mixin LoadingMixin<T extends StatefulWidget> on State<T> {
-  bool loading;
-  bool hasError;
-  bool _loaded;
+  bool loading = false;
+  bool hasError = false;
+  bool _loaded = true;
+  bool skipLoad = false;
   String error;
 
-  // put your async initiating logic in load
+  ///
+  /// put your async initiating logic in load
+  ///
   Future<void> load();
 
-  // recalls load and rebuilds the widgets
+  ///
+  /// recalls load and rebuilds the widgets
+  ///
   void reload() {
     setState(() {
       _load();
@@ -19,6 +24,7 @@ mixin LoadingMixin<T extends StatefulWidget> on State<T> {
   }
 
   void _load() {
+    if(skipLoad) return;
     loading = true;
     hasError = false;
     _loaded = false;

@@ -6,18 +6,20 @@ typedef LoaderCallback<T> = Future<T> Function();
 typedef WidgetValueBuilder<T> = Widget Function(BuildContext context, T value);
 
 class Loader<T> extends StatefulWidget {
+  final bool autoReload;
   final LoaderCallback<T> load;
   final WidgetValueBuilder<T> builder;
   final Widget loadingWidget;
   final Widget Function(String error) errorBuilder;
 
-  const Loader(
-      {Key key,
-      @required this.load,
-      this.builder,
-      this.loadingWidget,
-      this.errorBuilder})
-      : super(key: key);
+  const Loader({
+    Key key,
+    @required this.load,
+    this.autoReload = true,
+    this.builder,
+    this.loadingWidget,
+    this.errorBuilder,
+  }) : super(key: key);
 
   static LoadingMixin of(BuildContext context) {
     return context.findAncestorStateOfType<_LoaderState>();
