@@ -39,7 +39,7 @@ class UserAppBar extends StatefulWidget {
 }
 
 class _UserAppBarState extends State<UserAppBar> with LoadingMixin<UserAppBar> {
-  String _username;
+  late String _username;
 
   @override
   Future<void> load() async {
@@ -60,7 +60,7 @@ class PostsPage extends StatefulWidget {
 }
 
 class _PostsPageState extends State<PostsPage> with LoadingMixin<PostsPage> {
-  List<Post> _posts;
+  late List<Post> _posts;
 
   @override
   Future<void> load() async {
@@ -87,9 +87,9 @@ class FutureText extends StatelessWidget with StatelessLoadingMixin {
   final Future<String> futureText;
   final TextStyle style;
 
-  FutureText(this.futureText, {this.style});
+  FutureText(this.futureText, {required this.style});
 
-  String text;
+  late String text;
 
   @override
   Future<void> load() async {
@@ -115,6 +115,7 @@ Future<List<Post>> getPosts() async {
   return await Future.delayed(
       Duration(milliseconds: 3800),
       () => [
+            Post('Flutter 2.0 released!'),
             Post('Flutter 1.12 released!'),
             Post('Dart 2.7 released!'),
             Post('Flutter 1.9 released!'),

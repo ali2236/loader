@@ -1,3 +1,7 @@
+## [1.0.0]
+
+* null-safety
+
 ## [0.4.0]
 
 * ability to skip calling load in `initState` by setting `skipLoad` to `true`

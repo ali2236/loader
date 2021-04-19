@@ -7,7 +7,7 @@ mixin LoadingMixin<T extends StatefulWidget> on State<T> {
   bool hasError = false;
   bool _loaded = true;
   bool skipLoad = false;
-  String error;
+  String error = '';
 
   ///
   /// put your async initiating logic in load

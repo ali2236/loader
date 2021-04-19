@@ -8,13 +8,13 @@ typedef WidgetValueBuilder<T> = Widget Function(BuildContext context, T value);
 class Loader<T> extends StatefulWidget {
   final bool autoReload;
   final LoaderCallback<T> load;
-  final WidgetValueBuilder<T> builder;
-  final Widget loadingWidget;
-  final Widget Function(String error) errorBuilder;
+  final WidgetValueBuilder<T>? builder;
+  final Widget? loadingWidget;
+  final Widget Function(String error)? errorBuilder;
 
   const Loader({
-    Key key,
-    @required this.load,
+    Key? key,
+    required this.load,
     this.autoReload = true,
     this.builder,
     this.loadingWidget,
@@ -22,7 +22,7 @@ class Loader<T> extends StatefulWidget {
   }) : super(key: key);
 
   static LoadingMixin of(BuildContext context) {
-    return context.findAncestorStateOfType<_LoaderState>();
+    return context.findAncestorStateOfType<_LoaderState>() as LoadingMixin;
   }
 
   @override
@@ -30,7 +30,7 @@ class Loader<T> extends StatefulWidget {
 }
 
 class _LoaderState<T> extends State<Loader<T>> with LoadingMixin<Loader<T>> {
-  T _value;
+  late T _value;
 
   @override
   Future<void> load() async {
@@ -42,10 +42,10 @@ class _LoaderState<T> extends State<Loader<T>> with LoadingMixin<Loader<T>> {
     if (loading) return widget.loadingWidget ?? Container();
     if (hasError)
       return widget.errorBuilder != null
-          ? widget.errorBuilder(error)
+          ? widget.errorBuilder!(error)
           : Text(error);
     return widget.builder != null
-        ? widget.builder(context, _value)
+        ? widget.builder!(context, _value)
         : Container();
   }
 }
